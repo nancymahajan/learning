@@ -1,3 +1,5 @@
+------------------------Hacker Rank Vaccination Problem--------------------------------
+
 The world health organization wants to establish a total of B vaccination clinics across N cities to immunization people against fatal diseases. Every city must have at least 1 clinic, and a clinic can only vaccinate people in the same city where they live. The goal is to minimize the number of vaccination kits needed in the largest clinic. For example suppose you have.
  
 2 cities and  7 clinics to be opened. 200.000 is the population of first city, 50,000 is the population of second city.
