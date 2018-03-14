@@ -6,21 +6,32 @@ The world health organization wants to establish a total of B vaccination clinic
 Two clinics can open in the first city and Five in the second. This way 100,000 people can be immunized in each of the two clinics in first city, and 100.000 people can be immunized in the each clinic in the second city So the maximum number of people to be immunized in the largest clinic is 10,000.
  
 Input:
+
 Two integers in the first line, N, the number of cities, and B, the total number of clinics to be opened
 Each of the following N lines contains an integer ai, the population of city i
  
 Output:
+
 One integer representing the maximum number of people to be immunized in any single clinic
 
 Constraints:
+
 1<=N<=500,000 
+
 N<=B<=2,000,000 
+
 1<=ai<=5,000,000
+
  
 Sample input: 
+
 2 7 
+
 200000 
+
 500000
+
  
 Sample output: 
+
 100000
