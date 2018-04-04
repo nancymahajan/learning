@@ -15,22 +15,22 @@ public class CustomHashmap<K,V>{
         int hash = key.hashCode();
         int index = getIndex(hash);
         Entry<K,V> entry = null;
-        System.out.println("finding index : "+index);
+        //System.out.println("finding index : "+index);
         if(bucket[index] == null){
             entry = new Entry<K,V>(key, value);
-            System.out.println("new bucket : "+ entry);
+            //System.out.println("new bucket : "+ entry);
             bucket[index] = entry;
         }
         else{
             entry =  bucket[index];
             if(isContainsKey(entry,key)){
-                System.out.println("key entry allready present : "+ entry);
+               // System.out.println("key entry allready present : "+ entry +" size : "+ entry.size);
                 entry.value[entry.size]=new Value<V>(value);
+                entry.size++;
                 
             }
             else{
-                System.out.println("new entry : "+ key);
-                entry.next = new Entry<K,V>(key, value);
+                add(entry, key, value);
                 
             }
         }
@@ -48,15 +48,28 @@ public class CustomHashmap<K,V>{
         return false;
     }
     
+    private boolean add(Entry<K, V> entry, K key, V value)
+    {
+       // Entry entry = entry1;
+        while(entry!=null)
+        {
+           if(entry.next==null){
+               entry.next =  new Entry<K,V>(key, value);
+               return true;
+           }
+           entry = entry.next;
+        }
+        return false;
+    }
     private Value<V>[] getKey(Entry<K, V> entry, K key)
     {
         //System.out.println("getting " +entry);
        // Entry entry = entry1;
         while(entry!=null)
         {
-            System.out.println("----> "+entry);
+            //System.out.println("----> "+entry +" finding "+ key);
             if(entry.key.equals(key)){
-                System.out.println("I FOUND IT");
+               // System.out.println("I FOUND IT");
                 return entry.value;
             }else{
             entry = entry.next;
@@ -66,16 +79,16 @@ public class CustomHashmap<K,V>{
     }
 
     public String get(K key){
-        System.out.println(Arrays.toString(bucket));
+       // System.out.println(Arrays.toString(bucket));
         int hash = key.hashCode();
         int index = getIndex(hash);
         Entry<K,V> entry = null;
-        System.out.println("index : "+index);
+       // System.out.println("index : "+index);
         if(bucket[index] != null){
             Value<V>[] value= getKey(bucket[index], key);
             if(value== null)
                 return null;
-            return Arrays.toString(value);
+            return getMultiValues(value);
             
         }
         
@@ -87,6 +100,7 @@ public class CustomHashmap<K,V>{
         StringBuffer val = new StringBuffer();
         for (int i = 0; i < value.length; i++)
         {
+            if(value[i]!=null)
             val.append(value[i]);
         }
         return val.toString();
@@ -114,8 +128,9 @@ public class CustomHashmap<K,V>{
         ch.put(3, "testu");
         ch.put(1, "test7");
         
-        System.out.println("----------------------------------------------------" +ch.get(1));
+        System.out.println(ch.get(1));
         System.out.println(ch.get(2));
+        System.out.println(ch.get(3));
     }
     
 }
